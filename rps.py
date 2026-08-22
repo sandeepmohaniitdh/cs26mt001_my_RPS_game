@@ -14,6 +14,9 @@ def explain_rules():
 
 def play_round():
     player = input("Enter your choice (rock, paper, scissors): ").strip()
+    if player not in CHOICES:
+        print("Invalid choice. Please type rock, paper, or scissors.")
+        return None
     computer = random.choice(CHOICES)
     print(f"Computer chose: {computer}")
     if player == computer:
