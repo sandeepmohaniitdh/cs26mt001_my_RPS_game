@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import random
 
 CHOICES = ["rock", "paper", "scissors"]
@@ -20,16 +19,24 @@ def play_round():
     computer = random.choice(CHOICES)
     print(f"Computer chose: {computer}")
     if player == computer:
-        print("It's a tie!")
+        return "tie"
     elif BEATS[player] == computer:
-        print("You win!")
+        return "player"
     else:
-        print("Computer wins!")
+        return "computer"
 
 def main():
     greet()
     explain_rules()
-    play_round()
+    result = play_round()
+    while result == "tie" or result is None:
+        if result == "tie":
+            print("It's a tie! Rematch...\n")
+        result = play_round()
+    if result == "player":
+        print("You win!")
+    elif result == "computer":
+        print("Computer wins!")
 
 if __name__ == "__main__":
     main()
